@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis AI Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="security-overlay" id="securityOverlay">
+        <div class="security-box">
+            <div class="jarvis-face">
+                <div class="arc arc-left"></div>
+                <div class="arc arc-right"></div>
+                <div class="arc arc-top"></div>
+                <div class="arc arc-bottom"></div>
+                <div class="face">
+                    <div class="eye left-eye"></div>
+                    <div class="eye right-eye"></div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+            <h2>JARVIS SECURITY 2026</h2>
+            <p>Enter PIN to Access</p>
+            <div class="pin-display">
+                <span class="pin-dot"></span>
+                <span class="pin-dot"></span>
+                <span class="pin-dot"></span>
+                <span class="pin-dot"></span>
+            </div>
+            <div class="keypad">
+                <button onclick="enterPin(1)">1</button>
+                <button onclick="enterPin(2)">2</button>
+                <button onclick="enterPin(3)">3</button>
+                <button onclick="enterPin(4)">4</button>
+                <button onclick="enterPin(5)">5</button>
+                <button onclick="enterPin(6)">6</button>
+                <button onclick="enterPin(7)">7</button>
+                <button onclick="enterPin(8)">8</button>
+                <button onclick="enterPin(9)">9</button>
+                <button onclick="clearPin()">C</button>
+                <button onclick="enterPin(0)">0</button>
+                <button onclick="verifyPin()">✓</button>
+            </div>
+            <p class="hint">Default PIN: 2026</p>
+        </div>
+    </div>
+
+    <div class="main-container" id="mainContainer">
+        <div class="background-effects">
+            <div class="grid-overlay"></div>
+            <div class="glow-orb orb-1"></div>
+            <div class="glow-orb orb-2"></div>
+            <div class="glow-orb orb-3"></div>
+        </div>
+
+        <header class="header">
+            <div class="logo">
+                <div class="jarvis-logo">
+                    <div class="j-arc j-arc-left"></div>
+                    <div class="j-arc j-arc-right"></div>
+                    <div class="j-face">
+                        <div class="j-eye"></div>
+                    </div>
+                </div>
+                <span>JARVIS</span>
+            </div>
+            <div class="header-controls">
+                <div class="language-selector">
+                    <button class="lang-btn" id="langBtn" onclick="toggleLanguageMenu()">
+                        <i class="fas fa-globe"></i>
+                        <span id="currentLang">English</span>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <button onclick="setLanguage('en')">🇺🇸 English</button>
+                        <button onclick="setLanguage('ur')">🇵🇰 اردو</button>
+                        <button onclick="setLanguage('hi')">🇮🇳 हिंदी</button>
+                        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+                        <button onclick="setLanguage('zh')">🇨🇳 中文</button>
+                        <button onclick="setLanguage('ar')">🇸🇦 العربية</button>
+                    </div>
+                </div>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>ONLINE</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>SECURE 2026</span>
+                </div>
+                <button class="lock-btn" onclick="showSecurity()">
+                    <i class="fas fa-lock"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="jarvis-display" id="jarvisDisplay">
+                <div class="j-core">
+                    <div class="core-ring ring-1"></div>
+                    <div class="core-ring ring-2"></div>
+                    <div class="core-ring ring-3"></div>
+                    <div class="core-center">
+                        <div class="pulse-core"></div>
+                    </div>
+                </div>
+                <div class="response-area" id="responseArea">
+                    <p class="welcome-text">Hello Sir! I am Jarvis. How may I assist you today?</p>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">
+                    <div class="voice-ring"></div>
+                    <div class="voice-ring ring-delay-1"></div>
+                    <div class="voice-ring ring-delay-2"></div>
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <p class="voice-hint" id="voiceHint">Tap to speak</p>
+            </div>
+
+            <div class="quick-commands">
+                <button class="command-chip" onclick="executeCommand('open whatsapp')">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </button>
+                <button class="command-chip" onclick="executeCommand('open camera')">
+                    <i class="fas fa-camera"></i>
+                    Camera
+                </button>
+                <button class="command-chip" onclick="executeCommand('open browser')">
+                    <i class="fas fa-globe"></i>
+                    Browser
+                </button>
+                <button class="command-chip" onclick="executeCommand('what is ai')">
+                    <i class="fas fa-robot"></i>
+                    What is AI?
+                </button>
+                <button class="command-chip" onclick="executeCommand('tell me a joke')">
+                    <i class="fas fa-laugh"></i>
+                    Joke
+                </button>
+                <button class="command-chip" onclick="executeCommand('play music')">
+                    <i class="fas fa-music"></i>
+                    Music
+                </button>
+                <button class="command-chip all-apps-btn" onclick="toggleAllApps()">
+                    <i class="fas fa-th"></i>
+                    All Apps
+                </button>
+            </div>
+
+            <!-- All Apps Grid -->
+            <div class="all-apps-section" id="allAppsSection">
+                <div class="all-apps-header">
+                    <h2><i class="fas fa-th"></i> All Applications</h2>
+                    <button class="close-apps-btn" onclick="toggleAllApps()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="apps-grid" id="appsGrid">
+                    <!-- Apps will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Hello Sir! I am Jarvis, your personal AI assistant. I can:</p>
+                            <ul>
+                                <li>🎤 Control by voice</li>
+                                <li>📱 Open any app</li>
+                                <li>🤖 Answer questions</li>
+                                <li>🔒 Secure your device</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatKeyPress(event)">
+                    <button class="send-btn" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="system-status">
+                <span><i class="fas fa-microchip"></i> CPU: <span id="cpuStatus">12%</span></span>
+                <span><i class="fas fa-memory"></i> RAM: <span id="ramStatus">2.1GB</span></span>
+                <span><i class="fas fa-battery-half"></i> Battery: <span id="batteryStatus">78%</span></span>
+            </div>
+            <p class="footer-text">JARVIS AI Assistant v2026.0 | Secured with End-to-End Encryption</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
